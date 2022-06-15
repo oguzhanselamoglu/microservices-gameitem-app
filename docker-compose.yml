@@ -1,0 +1,21 @@
+version: '3.4'
+
+services:
+  storedb:
+    image: postgres
+
+  game.ordering.api:
+    image: ${DOCKER_REGISTRY-}gameorderingapi
+    build:
+      context: .
+      dockerfile: Services/Ordering/Game.Ordering.Api/Dockerfile
+
+  identity.api:
+    image: ${DOCKER_REGISTRY-}identityapi
+    build:
+      context: .
+      dockerfile: Services/IdentityServer/Identity.Api/Dockerfile
+
+volumes: 
+  postgres_data:
+  pgadmin_data:
